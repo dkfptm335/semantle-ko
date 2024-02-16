@@ -10,17 +10,18 @@ words = [words[i][0] for i in range(len(words))]
 count = 0
 
 for word in words:
-    url = r'https://semantle-ko.newsjel.ly/guess/685/' + word
+    url = r'https://semantle-ko.newsjel.ly/guess/686/' + word
     response = requests.get(url)
     score = response.text.split(':')[-1].split('}')[0]
-    if score != 'unknown':
+    if score == '"unknown"':
         score = 0.0
     else:   
         score = float(score)
         
     count += 1
-    print(f'{count}/{len(words)}')
+    if score > 0.3:
+        print(f'{count}/{len(words)}')
+        print(f'{word} : {score}')
     
-    if score > 0.4:
-        print(word, score)
+    if score > 0.5:
         break
