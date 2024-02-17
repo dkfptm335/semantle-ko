@@ -5,6 +5,8 @@ import datetime as dt
 import re
 import pandas as pd
 
+print("==================== Save to csv ====================")
+
 org_url = r'https://semantle-ko.newsjel.ly/'
 response = requests.get(org_url)
 soup = BeautifulSoup(response.text, 'html.parser')
@@ -46,6 +48,5 @@ print(len(word_list))
 df = pd.DataFrame(word_list, columns=['word'])
 today = datetime.today().strftime('%Y-%m-%d')
 
-print("==================== Save to csv ====================")
 df.to_csv(f'nearest1k_{today}.csv', index=False, encoding='utf-8-sig', sep='|', header=False)
 print("===================== Completed =====================")
