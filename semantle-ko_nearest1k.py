@@ -41,8 +41,6 @@ for _ in range(3):
     del word_list[1]
 
 del word_list[-1]
-    
-print(len(word_list))
 
 # save to csv
 df = pd.DataFrame(word_list, columns=['word'])
